@@ -29,8 +29,8 @@ namespace Proyecto_final
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.conte_listau = new System.Windows.Forms.Panel();
             this.ibtneliminar = new FontAwesome.Sharp.IconButton();
             this.ibtnsave = new FontAwesome.Sharp.IconButton();
@@ -47,7 +47,6 @@ namespace Proyecto_final
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lbNU = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbtitulolistausuario = new System.Windows.Forms.Label();
             this.dgvusuario = new System.Windows.Forms.DataGridView();
             this.dgvbtnseleciona = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Id_Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +58,7 @@ namespace Proyecto_final
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado_Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbtitulolistausuario = new System.Windows.Forms.Label();
             this.conte_listau.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvusuario)).BeginInit();
             this.SuspendLayout();
@@ -85,7 +85,7 @@ namespace Proyecto_final
             this.conte_listau.Location = new System.Drawing.Point(1, 1);
             this.conte_listau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.conte_listau.Name = "conte_listau";
-            this.conte_listau.Size = new System.Drawing.Size(1214, 687);
+            this.conte_listau.Size = new System.Drawing.Size(1311, 755);
             this.conte_listau.TabIndex = 36;
             // 
             // ibtneliminar
@@ -257,36 +257,24 @@ namespace Proyecto_final
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(65)))), ((int)(((byte)(86)))));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(-1, 0);
+            this.label1.Location = new System.Drawing.Point(-10, -7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(280, 687);
+            this.label1.Size = new System.Drawing.Size(287, 734);
             this.label1.TabIndex = 7;
             this.label1.Text = "Datos de registro";
-            // 
-            // lbtitulolistausuario
-            // 
-            this.lbtitulolistausuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(65)))), ((int)(((byte)(86)))));
-            this.lbtitulolistausuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtitulolistausuario.ForeColor = System.Drawing.Color.White;
-            this.lbtitulolistausuario.Location = new System.Drawing.Point(276, -1);
-            this.lbtitulolistausuario.Name = "lbtitulolistausuario";
-            this.lbtitulolistausuario.Size = new System.Drawing.Size(953, 688);
-            this.lbtitulolistausuario.TabIndex = 1;
-            this.lbtitulolistausuario.Text = "LISTA DE USUARIOS:";
-            this.lbtitulolistausuario.Click += new System.EventHandler(this.lbtitulolistausuario_Click);
             // 
             // dgvusuario
             // 
             this.dgvusuario.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvusuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvusuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvusuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvusuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvbtnseleciona,
@@ -307,11 +295,11 @@ namespace Proyecto_final
             this.dgvusuario.ReadOnly = true;
             this.dgvusuario.RowHeadersVisible = false;
             this.dgvusuario.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvusuario.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvusuario.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvusuario.Size = new System.Drawing.Size(786, 580);
             this.dgvusuario.TabIndex = 19;
             this.dgvusuario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvusuario_CellContentClick);
@@ -413,6 +401,18 @@ namespace Proyecto_final
             this.estado.Name = "estado";
             this.estado.ReadOnly = true;
             this.estado.Width = 125;
+            // 
+            // lbtitulolistausuario
+            // 
+            this.lbtitulolistausuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(65)))), ((int)(((byte)(86)))));
+            this.lbtitulolistausuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbtitulolistausuario.ForeColor = System.Drawing.Color.White;
+            this.lbtitulolistausuario.Location = new System.Drawing.Point(276, -1);
+            this.lbtitulolistausuario.Name = "lbtitulolistausuario";
+            this.lbtitulolistausuario.Size = new System.Drawing.Size(1009, 742);
+            this.lbtitulolistausuario.TabIndex = 1;
+            this.lbtitulolistausuario.Text = "LISTA DE USUARIOS:";
+            this.lbtitulolistausuario.Click += new System.EventHandler(this.lbtitulolistausuario_Click);
             // 
             // frmUsuario
             // 
