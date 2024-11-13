@@ -268,7 +268,30 @@ namespace Proyecto_final
 
         }
 
+        private void ibtnlimpiar_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void ibtnbusca_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbobusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbbuscar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

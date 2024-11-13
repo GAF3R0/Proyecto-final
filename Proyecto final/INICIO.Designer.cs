@@ -44,7 +44,11 @@ namespace Proyecto_final
             this.ibtnvisita = new FontAwesome.Sharp.IconButton();
             this.ibtnusuario = new FontAwesome.Sharp.IconButton();
             this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.Con_botonee.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // menutitulo
@@ -66,7 +70,7 @@ namespace Proyecto_final
             this.lblusuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(79)))), ((int)(((byte)(203)))));
             this.lblusuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblusuario.ForeColor = System.Drawing.Color.White;
-            this.lblusuario.Location = new System.Drawing.Point(1307, 24);
+            this.lblusuario.Location = new System.Drawing.Point(1257, 24);
             this.lblusuario.Name = "lblusuario";
             this.lblusuario.Size = new System.Drawing.Size(118, 29);
             this.lblusuario.TabIndex = 7;
@@ -314,11 +318,36 @@ namespace Proyecto_final
             this.iconMenuItem1.Size = new System.Drawing.Size(32, 19);
             this.iconMenuItem1.Text = "iconMenuItem1";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(80)))), ((int)(((byte)(202)))));
+            this.pictureBox1.Image = global::Proyecto_final.Properties.Resources.Captura_de_pantalla_2024_11_08_180608_removebg_preview;
+            this.pictureBox1.Location = new System.Drawing.Point(1166, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(85, 70);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(80)))), ((int)(((byte)(202)))));
+            this.pictureBox2.Image = global::Proyecto_final.Properties.Resources.Captura_de_pantalla_2024_11_08_130645_removebg_preview;
+            this.pictureBox2.Location = new System.Drawing.Point(5, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(118, 69);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 16;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
             // INICIO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1500, 800);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Con_botonee);
             this.Controls.Add(this.Contenedor);
             this.Controls.Add(this.lbtitulo);
@@ -331,6 +360,8 @@ namespace Proyecto_final
             this.Text = "INICIO";
             this.Load += new System.EventHandler(this.INICIO_Load);
             this.Con_botonee.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,5 +384,7 @@ namespace Proyecto_final
         private FontAwesome.Sharp.IconButton ibtninicio;
         private FontAwesome.Sharp.IconButton ibtnclientes;
         private System.Windows.Forms.Panel Con_botonee;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
