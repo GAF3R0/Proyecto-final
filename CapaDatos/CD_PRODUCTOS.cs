@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 using CapaEntidades;
+using System.Windows.Forms;
 
 namespace CapaDatos
 {
@@ -33,7 +34,7 @@ namespace CapaDatos
                         {
                             lista.Add(new PRODUCTO()
                             {
-                                Prod_Id = Convert.ToInt32(dr["Prod_Id"]),
+                                Prod_Id = Convert.ToInt64(dr["Prod_Id"]),
                                 Prod_Nombre = dr["Prod_Nombre"].ToString(),
                                 Prod_Cantidad = Convert.ToInt32(dr["Prod_Cantidad"]),
                                 Prod_Precio = Convert.ToDecimal(dr["Prod_Precio"]),                                
@@ -56,7 +57,7 @@ namespace CapaDatos
 
 
         //insert into Productos(Prod_Id,Prod_Nombre,Prod_Cantidad,Prod_Precio,Prod_FechaCad) value(7654321,"Menbresia",20,150.5,null);
-        public void ingresar(int id, string nombre, int cantidad, decimal precio, string fechacad)
+        public void ingresar(long id, string nombre, int cantidad, decimal precio, string fechacad)
         {
             string insertQuery = "insert into Productos(Prod_Id,Prod_Nombre,Prod_Cantidad,Prod_Precio,Prod_FechaCad) VALUES (@id, @nombre, @cant, @precio, @fechacad)";
 
@@ -91,9 +92,9 @@ namespace CapaDatos
             }
         }
 
-        public void VMV(int id)
+        public void VMV(long id)
         {
-            string deleteQuery = "DELETE FROM ProductosAquependejosoy WHERE Prod_Id = @id";
+            string deleteQuery = "DELETE FROM Productos WHERE Prod_Id = @id";
 
             using (MySqlConnection connection = new MySqlConnection(conectadobb))
             {
@@ -126,9 +127,9 @@ namespace CapaDatos
             }
         }
 
-        public bool Existeprod(int ide)
+        public bool Existeprod(long ide)
         {
-            string query = "SELECT COUNT(*) FROM ProductosAquependejosoy WHERE Prod_Id = @id";
+            string query = "SELECT COUNT(*) FROM Productos WHERE Prod_Id = @id";
             using (MySqlConnection connection = new MySqlConnection(conectadobb))
             {
                 try
@@ -148,14 +149,14 @@ namespace CapaDatos
             }
         }
 
-        public void L(int prodId, string nombre, int cantidad, decimal precio, string fechacad)
+        public void L(long prodId, string nombre, int cantidad, decimal precio, string fechacad)
         {
             if (!Existeprod(prodId))
             {
                 throw new Exception("El producto no existe.");
             }
 
-            string updateQuery = "UPDATE ProductosAquependejosoy SET Prod_Nombre = @nombre ,Prod_Cantidad = @Stock ,Prod_Precio = @Precio ,Prod_FechaCad = @fechacad WHERE Prod_Id = @ProdId";
+            string updateQuery = "UPDATE Productos SET Prod_Nombre = @nombre ,Prod_Cantidad = @Stock ,Prod_Precio = @Precio ,Prod_FechaCad = @fechacad WHERE Prod_Id = @ProdId";
 
             using (MySqlConnection connection = new MySqlConnection(conectadobb))
             {
@@ -192,5 +193,8 @@ namespace CapaDatos
 
             }
         }
+
+       
+
     }
 }

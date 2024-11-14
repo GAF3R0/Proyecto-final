@@ -52,7 +52,6 @@ namespace Proyecto_final
             this.ibtnexportarexcel = new FontAwesome.Sharp.IconButton();
             this.ibtneliminar = new FontAwesome.Sharp.IconButton();
             this.ibtnsave = new FontAwesome.Sharp.IconButton();
-            this.cbobusqueda = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvprod)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,9 +60,9 @@ namespace Proyecto_final
             this.lbtitulolistaproductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(65)))), ((int)(((byte)(86)))));
             this.lbtitulolistaproductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbtitulolistaproductos.ForeColor = System.Drawing.Color.White;
-            this.lbtitulolistaproductos.Location = new System.Drawing.Point(422, -1);
+            this.lbtitulolistaproductos.Location = new System.Drawing.Point(315, -3);
             this.lbtitulolistaproductos.Name = "lbtitulolistaproductos";
-            this.lbtitulolistaproductos.Size = new System.Drawing.Size(658, 152);
+            this.lbtitulolistaproductos.Size = new System.Drawing.Size(767, 701);
             this.lbtitulolistaproductos.TabIndex = 116;
             this.lbtitulolistaproductos.Text = "LISTA DE PRODUCTOS:";
             // 
@@ -74,7 +73,7 @@ namespace Proyecto_final
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(-2, -1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(429, 691);
+            this.label1.Size = new System.Drawing.Size(323, 699);
             this.label1.TabIndex = 117;
             this.label1.Text = "Datos de registro";
             // 
@@ -95,7 +94,7 @@ namespace Proyecto_final
             this.txtCodigoBarras.Location = new System.Drawing.Point(24, 118);
             this.txtCodigoBarras.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCodigoBarras.Name = "txtCodigoBarras";
-            this.txtCodigoBarras.Size = new System.Drawing.Size(243, 22);
+            this.txtCodigoBarras.Size = new System.Drawing.Size(212, 22);
             this.txtCodigoBarras.TabIndex = 119;
             // 
             // lbNP
@@ -115,7 +114,7 @@ namespace Proyecto_final
             this.txtNombre.Location = new System.Drawing.Point(24, 187);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(243, 22);
+            this.txtNombre.Size = new System.Drawing.Size(212, 22);
             this.txtNombre.TabIndex = 121;
             // 
             // lbCantidad
@@ -136,7 +135,7 @@ namespace Proyecto_final
             this.txtCantidad.Location = new System.Drawing.Point(24, 254);
             this.txtCantidad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(243, 22);
+            this.txtCantidad.Size = new System.Drawing.Size(212, 22);
             this.txtCantidad.TabIndex = 123;
             // 
             // lbprecio
@@ -156,7 +155,7 @@ namespace Proyecto_final
             this.txtPrecio.Location = new System.Drawing.Point(24, 317);
             this.txtPrecio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(243, 22);
+            this.txtPrecio.Size = new System.Drawing.Size(212, 22);
             this.txtPrecio.TabIndex = 125;
             // 
             // lbcaducidad
@@ -177,7 +176,7 @@ namespace Proyecto_final
             this.txtCaducidad.Location = new System.Drawing.Point(24, 390);
             this.txtCaducidad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCaducidad.Name = "txtCaducidad";
-            this.txtCaducidad.Size = new System.Drawing.Size(243, 22);
+            this.txtCaducidad.Size = new System.Drawing.Size(212, 22);
             this.txtCaducidad.TabIndex = 127;
             this.txtCaducidad.Text = "ej. 2024-12-01";
             // 
@@ -193,11 +192,11 @@ namespace Proyecto_final
             this.Precio,
             this.FechaC,
             this.Fecharegistro});
-            this.dgvprod.Location = new System.Drawing.Point(366, 134);
+            this.dgvprod.Location = new System.Drawing.Point(242, 71);
             this.dgvprod.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvprod.Name = "dgvprod";
             this.dgvprod.RowHeadersWidth = 51;
-            this.dgvprod.Size = new System.Drawing.Size(714, 572);
+            this.dgvprod.Size = new System.Drawing.Size(669, 572);
             this.dgvprod.TabIndex = 97;
             this.dgvprod.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvprod_CellContentClick);
             this.dgvprod.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvprod_CellPainting);
@@ -268,10 +267,10 @@ namespace Proyecto_final
             this.ibtnexportarexcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
             this.ibtnexportarexcel.IconColor = System.Drawing.Color.White;
             this.ibtnexportarexcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnexportarexcel.Location = new System.Drawing.Point(546, 39);
+            this.ibtnexportarexcel.Location = new System.Drawing.Point(56, 561);
             this.ibtnexportarexcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ibtnexportarexcel.Name = "ibtnexportarexcel";
-            this.ibtnexportarexcel.Size = new System.Drawing.Size(141, 91);
+            this.ibtnexportarexcel.Size = new System.Drawing.Size(80, 82);
             this.ibtnexportarexcel.TabIndex = 130;
             this.ibtnexportarexcel.Text = "Exportar a excel";
             this.ibtnexportarexcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -288,10 +287,10 @@ namespace Proyecto_final
             this.ibtneliminar.IconChar = FontAwesome.Sharp.IconChar.X;
             this.ibtneliminar.IconColor = System.Drawing.Color.White;
             this.ibtneliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtneliminar.Location = new System.Drawing.Point(190, 457);
+            this.ibtneliminar.Location = new System.Drawing.Point(108, 467);
             this.ibtneliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ibtneliminar.Name = "ibtneliminar";
-            this.ibtneliminar.Size = new System.Drawing.Size(107, 157);
+            this.ibtneliminar.Size = new System.Drawing.Size(74, 67);
             this.ibtneliminar.TabIndex = 129;
             this.ibtneliminar.Text = "Eliminar";
             this.ibtneliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -308,25 +307,15 @@ namespace Proyecto_final
             this.ibtnsave.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
             this.ibtnsave.IconColor = System.Drawing.Color.White;
             this.ibtnsave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnsave.Location = new System.Drawing.Point(4, 443);
+            this.ibtnsave.Location = new System.Drawing.Point(15, 467);
             this.ibtnsave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ibtnsave.Name = "ibtnsave";
-            this.ibtnsave.Size = new System.Drawing.Size(180, 154);
+            this.ibtnsave.Size = new System.Drawing.Size(74, 67);
             this.ibtnsave.TabIndex = 128;
             this.ibtnsave.Text = "Guardar";
             this.ibtnsave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.ibtnsave.UseVisualStyleBackColor = false;
             this.ibtnsave.Click += new System.EventHandler(this.ibtnsave_Click);
-            // 
-            // cbobusqueda
-            // 
-            this.cbobusqueda.FormattingEnabled = true;
-            this.cbobusqueda.Location = new System.Drawing.Point(879, 106);
-            this.cbobusqueda.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbobusqueda.Name = "cbobusqueda";
-            this.cbobusqueda.Size = new System.Drawing.Size(201, 24);
-            this.cbobusqueda.TabIndex = 132;
-            this.cbobusqueda.SelectedIndexChanged += new System.EventHandler(this.cbobusqueda_SelectedIndexChanged);
             // 
             // frmProducto
             // 
@@ -334,8 +323,7 @@ namespace Proyecto_final
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1139, 696);
-            this.Controls.Add(this.cbobusqueda);
+            this.ClientSize = new System.Drawing.Size(909, 695);
             this.Controls.Add(this.ibtnexportarexcel);
             this.Controls.Add(this.ibtneliminar);
             this.Controls.Add(this.ibtnsave);
@@ -387,6 +375,5 @@ namespace Proyecto_final
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaC;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecharegistro;
-        private System.Windows.Forms.ComboBox cbobusqueda;
     }
 }

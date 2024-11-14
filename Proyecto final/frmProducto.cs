@@ -49,16 +49,7 @@ namespace Proyecto_final
 
         private void frmProducto_Load(object sender, EventArgs e)
         {
-            foreach (DataGridViewColumn columna in dgvprod.Columns)
-            {
-                if (columna.Visible == true && columna.Name != "btnseleccionar")
-                {
-                    cbobusqueda.Items.Add(new optioncombo() { Valor = columna.Name, Texto = columna.HeaderText });
-                }
-            }
-            cbobusqueda.DisplayMember = "Texto";
-            cbobusqueda.ValueMember = "Valor";
-            cbobusqueda.SelectedIndex = 0;
+            
 
 
             List<PRODUCTO> listainv = new CN_PRUDUCTOS().Listar();
@@ -72,11 +63,10 @@ namespace Proyecto_final
 
         private void ibtnsave_Click(object sender, EventArgs e)
         {
-            int prodId;
-            if (!int.TryParse(txtCodigoBarras.Text, out prodId))
+            long prodId;
+            if (!long.TryParse(txtCodigoBarras.Text, out prodId))
             {
-                // MessageBox.Show("El código de barras debe ser un número válido.");
-                return; // Salir del método si hay un error
+               return;
             }
 
             string prodNombre = txtNombre.Text;
@@ -84,14 +74,12 @@ namespace Proyecto_final
             int prodCantidad;
             if (!int.TryParse(txtCantidad.Text, out prodCantidad))
             {
-                //MessageBox.Show("La cantidad debe ser un número válido.");
                 return;
             }
 
             decimal prodPrecio;
             if (!decimal.TryParse(txtPrecio.Text, out prodPrecio))
             {
-                //MessageBox.Show("El precio debe ser un número válido.");
                 return;
             }
 
@@ -101,10 +89,10 @@ namespace Proyecto_final
                 Prod_Nombre = prodNombre,
                 Prod_Cantidad = prodCantidad,
                 Prod_Precio = prodPrecio,
-                Prod_FechaCad = txtCaducidad.Text // Asegúrate de que sea un formato de fecha válido
+                Prod_FechaCad = txtCaducidad.Text 
             };
 
-            int id = Convert.ToInt32(txtCodigoBarras.Text);
+            long id = Convert.ToInt64(txtCodigoBarras.Text);
             string nombre = txtNombre.Text;
             int cant = Convert.ToInt32(txtCantidad.Text);
             decimal precio = Convert.ToDecimal(txtPrecio.Text);
@@ -132,10 +120,7 @@ namespace Proyecto_final
                 {
                     MessageBox.Show("Error al registrar el producto: " + ex.Message);
                 }
-            }
-
-
-            //objcn_produc.MPBA(id, nombre, cant, precio, fechacad);
+            }           
 
             cargarprod();
         }
@@ -171,7 +156,7 @@ namespace Proyecto_final
             }
         private void ibtneliminar_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(txtCodigoBarras.Text);
+            long id = Convert.ToInt64(txtCodigoBarras.Text);
             objcn_produc.SALV(id);
             cargarprod();
             Noemi();

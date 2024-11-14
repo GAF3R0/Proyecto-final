@@ -6,82 +6,102 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Wordprocessing;
+using Document = iTextSharp.text.Document;
+using System.IO;
+using Rectangle = System.Drawing.Rectangle;
+using PageSize = DocumentFormat.OpenXml.Wordprocessing.PageSize;
 
 namespace Proyecto_final
 {
     public partial class frmDetalleVenta : Form
     {
+        private const float V = 10f;
+        int cant = 0;
+        float cambio;
+        float pago;
+        float monto;
+
         public frmDetalleVenta()
         {
             InitializeComponent();
-            
+
             dgvprod.CellValueChanged += new DataGridViewCellEventHandler(dgvprod_CellValueChanged);
-            
+
             txtpago.KeyPress += new KeyPressEventHandler(txtpago_KeyPress);
         }
 
-        private void ibtnlimpiar_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+  
         private void frmDetalleVenta_Load(object sender, EventArgs e)
         {
-            
+            txtpago.Text = "0.00";
+            txtcambio.Text = "0.00";
+            txtmtotal.Text = "0.00";
+
+            pago = float.Parse(txtpago.Text);
+            monto = float.Parse(txtmtotal.Text);
+
+
+
             txtfecha1.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
-        private void txtmtotal_TextChanged(object sender, EventArgs e)
-        {
-            
-            CalcularTotal();
-        }
+    
 
-        private void CalcularTotal()
+        private void CalcularCambio()
         {
-            
-            decimal total = dgvprod.Rows.Cast<DataGridViewRow>()
-                          .Sum(row => Convert.ToDecimal(row.Cells["Cantidad"].Value) * Convert.ToDecimal(row.Cells["PrecioU"].Value));
-            txtmtotal.Text = total.ToString("0.00");
-        }
+            decimal total = 0;
+            decimal pago = 0;
 
-        private void txtpago_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
+            txtmtotal.Text = txtmtotal.Text.Replace(",", "");
 
-        private void txtpago_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-            if (e.KeyChar == (char)Keys.Enter)
+            if (!string.IsNullOrWhiteSpace(txtmtotal.Text))
             {
-                
-                if (decimal.TryParse(txtpago.Text, out decimal pago) &&
-                    decimal.TryParse(txtmtotal.Text, out decimal total))
+                if (decimal.TryParse(txtmtotal.Text, out total))
                 {
-                    decimal cambio = pago - total;
-
-                    if (pago < total)
+                    if (decimal.TryParse(txtpago.Text, out pago))
                     {
-                        MessageBox.Show("El pago es insuficiente.");
+                        decimal cambio = pago - total;
+                        txtcambio.Text = cambio.ToString("C");
                     }
                     else
                     {
-                        txtcambio.Text = cambio.ToString("0.00");
+                        MessageBox.Show("Por favor, ingrese un monto válido en el campo de pago.");
                     }
                 }
+                else
+                {
+                    MessageBox.Show("El valor del total no es válido.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("El campo de total está vacío.");
+            }
+        }
 
-                
+
+
+        private void txtpago_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+
+                CalcularCambio();
+
                 e.Handled = true;
             }
+
         }
 
         private void txtcambio_TextChanged(object sender, EventArgs e)
         {
-            
+
             if (decimal.TryParse(txtmtotal.Text, out decimal total) &&
                 decimal.TryParse(txtpago.Text, out decimal pago))
             {
@@ -92,69 +112,98 @@ namespace Proyecto_final
 
         private void txttpproducto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
             if (e.KeyChar == (char)Keys.Enter)
             {
-                
-                string codigoBarras = txttpproducto.Text;
+                string codigoBarras = txtcbproducto.Text;
                 PRODUCTO producto = BuscarProductoPorCodigoBarras(codigoBarras);
 
                 if (producto != null)
                 {
-                    
-                    dgvprod.Rows.Add(producto.Prod_Id, producto.Prod_Nombre, 1, producto.Prod_Precio, 1 * producto.Prod_Precio);
-                    CalcularTotal(); 
-                    
-                    txttpproducto.Clear();
+
+                    txtNombre.Text = producto.Prod_Nombre;
+
+                    bool productoExistente = false;
+
+                    foreach (DataGridViewRow row in dgvprod.Rows)
+                    {
+                        if (row.Cells[1].Value.ToString() == producto.Prod_Id.ToString())
+                        {
+
+                            int cantidadActual = Convert.ToInt32(row.Cells[3].Value);
+                            row.Cells[3].Value = cantidadActual + 1;
+
+
+                            decimal precioUnitario = Convert.ToDecimal(row.Cells[4].Value);
+                            row.Cells[5].Value = (cantidadActual + 1) * precioUnitario;
+
+                            productoExistente = true;
+                            break;
+
+                        }
+                        txtNombre.Clear();
+                        txtcbproducto.Clear();
+                    }
+
+
+                    if (!productoExistente)
+                    {
+                        dgvprod.Rows.Add(" ", producto.Prod_Id, producto.Prod_Nombre, 1, producto.Prod_Precio, producto.Prod_Precio);
+                    }
+
+                    CalcularTotal();
                 }
 
-                
                 e.Handled = true;
             }
+
+
+
         }
 
         private PRODUCTO BuscarProductoPorCodigoBarras(string codigoBarras)
         {
-            
+
             return new CN_PRUDUCTOS().Listar().FirstOrDefault(p => p.Prod_Id.ToString() == codigoBarras);
         }
 
         private void icbticket_Click(object sender, EventArgs e)
         {
-            
-            StringBuilder ticket = new StringBuilder();
-            ticket.AppendLine("Tienda UNA-FIT");
-            ticket.AppendLine("Fecha: " + txtfecha1.Text);
-            ticket.AppendLine("================================");
-            ticket.AppendLine("Cantidad\tNombre\tPrecio U.\tTotal");
+
+
+        }
+
+        private void CalcularTotal()
+        {
+            decimal total = 0;
+
 
             foreach (DataGridViewRow row in dgvprod.Rows)
             {
-                ticket.AppendLine($"{row.Cells["Cantidad"].Value}\t{row.Cells["Nombre"].Value}\t{row.Cells["PrecioU"].Value}\t{row.Cells["PrecioTotal"].Value}");
+                if (row.Cells[5].Value != null)
+                {
+                    total += Convert.ToDecimal(row.Cells[5].Value);
+                }
             }
 
-            ticket.AppendLine("================================");
-            ticket.AppendLine($"Total: {txtmtotal.Text}");
-            ticket.AppendLine($"Pago: {txtpago.Text}");
-            ticket.AppendLine($"Cambio: {txtcambio.Text}");
-            MessageBox.Show(ticket.ToString(), "Ticket de Compra");
+
+            txtmtotal.Text = total.ToString();
         }
 
         private void txtfecha1_TextChanged(object sender, EventArgs e)
         {
-            
+
             txtfecha1.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
         private void dgvprod_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             if (e.RowIndex >= 0 && dgvprod.Columns[e.ColumnIndex].Name == "Cantidad")
             {
                 int cantidad = Convert.ToInt32(dgvprod.Rows[e.RowIndex].Cells["Cantidad"].Value);
                 decimal precioU = Convert.ToDecimal(dgvprod.Rows[e.RowIndex].Cells["PrecioU"].Value);
                 dgvprod.Rows[e.RowIndex].Cells["PrecioTotal"].Value = cantidad * precioU;
-                CalcularTotal(); 
+
             }
         }
 
@@ -162,27 +211,27 @@ namespace Proyecto_final
         {
             if (e.RowIndex >= 0 && (dgvprod.Columns[e.ColumnIndex].Name == "Cantidad" || dgvprod.Columns[e.ColumnIndex].Name == "PrecioU"))
             {
-                
+
                 int cantidad = Convert.ToInt32(dgvprod.Rows[e.RowIndex].Cells["Cantidad"].Value);
                 decimal precioU = Convert.ToDecimal(dgvprod.Rows[e.RowIndex].Cells["PrecioU"].Value);
                 dgvprod.Rows[e.RowIndex].Cells["PrecioTotal"].Value = cantidad * precioU;
-                CalcularTotal(); 
+
             }
         }
 
         private void icbagregarproducto_Click(object sender, EventArgs e)
         {
-            
-            txttpproducto.Clear();
+
+            txtcbproducto.Clear();
         }
 
         private void icbquitarproducto_Click(object sender, EventArgs e)
         {
-            
+
             if (dgvprod.Rows.Count > 0)
             {
                 dgvprod.Rows.RemoveAt(dgvprod.Rows.Count - 1);
-                CalcularTotal(); 
+
             }
         }
 
@@ -198,6 +247,59 @@ namespace Proyecto_final
 
         private void txttpproducto_TextChanged_1(object sender, EventArgs e)
         {
+
+        }
+
+
+        private void ibtncobra_Click(object sender, EventArgs e)
+        {
+            Document pdfDoc = new Document(new iTextSharp.text.Rectangle(612f, 792f), 10f, 10f, 20f, 10f);
+
+
+            string directorio = @"C:\Users\erick\Desktop\tickets";
+            if (!Directory.Exists(directorio))
+            {
+                Directory.CreateDirectory(directorio);
+            }
+            string rutaPDF = Path.Combine(directorio, "TicketDeCompra.pdf");
+
+            using (FileStream stream = new FileStream(rutaPDF, FileMode.Create))
+            {
+                PdfWriter.GetInstance(pdfDoc, stream);
+                pdfDoc.Open();
+
+                pdfDoc.Add(new iTextSharp.text.Paragraph("Tienda UNA-FIT", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16)));
+                pdfDoc.Add(new iTextSharp.text.Paragraph("Fecha: " + txtfecha1.Text));
+                pdfDoc.Add(new iTextSharp.text.Paragraph("================================"));
+                pdfDoc.Add(new iTextSharp.text.Paragraph("Cantidad\t\tNombre\t\tPrecio U.\t\tTotal"));
+
+
+                foreach (DataGridViewRow row in dgvprod.Rows)
+                {
+                    if (row.Cells["Nombre"].Value != null && row.Cells["Cantidad"].Value != null &&
+                        row.Cells["PrecioU"].Value != null && row.Cells["PrecioTotal"].Value != null)
+                    {
+                        string nombre = row.Cells["Nombre"].Value.ToString();
+                        string cantidad = row.Cells["Cantidad"].Value.ToString();
+                        string precioU = row.Cells["PrecioU"].Value.ToString();
+                        string precioTotal = row.Cells["PrecioTotal"].Value.ToString();
+
+                        pdfDoc.Add(new iTextSharp.text.Paragraph($"{cantidad}\t{nombre}\t{precioU}\t{precioTotal}"));
+                    }
+
+                    pdfDoc.Add(new iTextSharp.text.Paragraph("================================"));
+                    pdfDoc.Add(new iTextSharp.text.Paragraph($"Total: {txtmtotal.Text}"));
+                    pdfDoc.Add(new iTextSharp.text.Paragraph($"Pago: {txtpago.Text}")); ;
+                    pdfDoc.Add(new iTextSharp.text.Paragraph($"Cambio: {txtcambio.Text}"));
+
+
+
+                    pdfDoc.Close();
+                }
+
+                MessageBox.Show($"El ticket de compra ha sido guardado en: {rutaPDF}", "Ticket de Compra");
+            }
+
 
         }
     }

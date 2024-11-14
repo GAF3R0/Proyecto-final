@@ -39,7 +39,6 @@ namespace Proyecto_final
             this.ibtnsalir = new FontAwesome.Sharp.IconButton();
             this.ibtnacercade = new FontAwesome.Sharp.IconButton();
             this.ibtninventario = new FontAwesome.Sharp.IconButton();
-            this.ibtnventas = new FontAwesome.Sharp.IconButton();
             this.ibtnmiembros = new FontAwesome.Sharp.IconButton();
             this.ibtnvisita = new FontAwesome.Sharp.IconButton();
             this.ibtnusuario = new FontAwesome.Sharp.IconButton();
@@ -106,7 +105,6 @@ namespace Proyecto_final
             this.Con_botonee.Controls.Add(this.ibtnsalir);
             this.Con_botonee.Controls.Add(this.ibtnacercade);
             this.Con_botonee.Controls.Add(this.ibtninventario);
-            this.Con_botonee.Controls.Add(this.ibtnventas);
             this.Con_botonee.Controls.Add(this.ibtnmiembros);
             this.Con_botonee.Controls.Add(this.ibtnvisita);
             this.Con_botonee.Controls.Add(this.ibtnusuario);
@@ -150,7 +148,7 @@ namespace Proyecto_final
             this.ibtninicio.IconColor = System.Drawing.Color.White;
             this.ibtninicio.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ibtninicio.IconSize = 50;
-            this.ibtninicio.Location = new System.Drawing.Point(27, 52);
+            this.ibtninicio.Location = new System.Drawing.Point(85, 52);
             this.ibtninicio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ibtninicio.Name = "ibtninicio";
             this.ibtninicio.Size = new System.Drawing.Size(107, 89);
@@ -224,27 +222,6 @@ namespace Proyecto_final
             this.ibtninventario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.ibtninventario.UseVisualStyleBackColor = true;
             this.ibtninventario.Click += new System.EventHandler(this.ibtninventario_Click);
-            // 
-            // ibtnventas
-            // 
-            this.ibtnventas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ibtnventas.FlatAppearance.BorderSize = 0;
-            this.ibtnventas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(203)))));
-            this.ibtnventas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnventas.ForeColor = System.Drawing.Color.White;
-            this.ibtnventas.IconChar = FontAwesome.Sharp.IconChar.SackDollar;
-            this.ibtnventas.IconColor = System.Drawing.Color.White;
-            this.ibtnventas.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnventas.IconSize = 50;
-            this.ibtnventas.Location = new System.Drawing.Point(141, 52);
-            this.ibtnventas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ibtnventas.Name = "ibtnventas";
-            this.ibtnventas.Size = new System.Drawing.Size(107, 89);
-            this.ibtnventas.TabIndex = 3;
-            this.ibtnventas.Text = "Ventas";
-            this.ibtnventas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.ibtnventas.UseVisualStyleBackColor = true;
-            this.ibtnventas.Click += new System.EventHandler(this.ibtnventas_Click);
             // 
             // ibtnmiembros
             // 
@@ -378,7 +355,6 @@ namespace Proyecto_final
         private FontAwesome.Sharp.IconButton ibtnsalir;
         private FontAwesome.Sharp.IconButton ibtnacercade;
         private FontAwesome.Sharp.IconButton ibtninventario;
-        private FontAwesome.Sharp.IconButton ibtnventas;
         private FontAwesome.Sharp.IconButton ibtnmiembros;
         private FontAwesome.Sharp.IconButton ibtnvisita;
         private FontAwesome.Sharp.IconButton ibtninicio;

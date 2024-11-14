@@ -112,10 +112,7 @@ namespace Proyecto_final
             Abrirformulariobtn(ibtnmiembros, new frmMienbros());
         }
 
-        private void ibtnventas_Click(object sender, EventArgs e)
-        {
-            Abrirformulariobtn(ibtnventas, new frmVenta());
-        }
+     
 
         private void ibtninventario_Click(object sender, EventArgs e)
         {

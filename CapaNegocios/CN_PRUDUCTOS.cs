@@ -17,24 +17,26 @@ namespace CapaNegocios
             return objcd_productos.Listar();
         }
 
-        public void  MPBA(int id, string nombre, int cantidad, decimal precio, string fechacad)
+        public void  MPBA(long id, string nombre, int cantidad, decimal precio, string fechacad)
         {
             objcd_productos.ingresar(id, nombre, cantidad, precio, fechacad);
         }
 
-        public void SALV (int id)
+        public void SALV (long id)
         {
             objcd_productos.VMV(id);
         }
 
-        public bool Existe(int id)
+        public bool Existe(long id)
         {
             return objcd_productos.Existeprod(id);
         }
 
-        public void EFEHOV(int id, string nombre, int cantidad, decimal precio, string fechacad)
+        public void EFEHOV(long id, string nombre, int cantidad, decimal precio, string fechacad)
         {
             objcd_productos.L(id, nombre, cantidad, precio, fechacad);
         }
+
+
     }
 }
