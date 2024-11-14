@@ -194,7 +194,31 @@ namespace CapaDatos
             }
         }
 
-       
+        public void UCP(string nombre, int cantidad)
+        {
+           
+            string query = "UPDATE Productos SET Prod_Cantidad = Prod_Cantidad - @cantidadVendida WHERE Prod_Nombre = @productoNombre";
+
+            using (MySqlConnection conn = new MySqlConnection(conectadobb))
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@productoNombre", nombre);
+                        cmd.Parameters.AddWithValue("@cantidadVendida", cantidad);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al actualizar la cantidad del producto: " + ex.Message);
+                }
+            }
+        }
+
 
     }
 }

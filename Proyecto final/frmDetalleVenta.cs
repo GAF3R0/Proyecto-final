@@ -21,8 +21,8 @@ namespace Proyecto_final
     public partial class frmDetalleVenta : Form
     {
         private const float V = 10f;
-        int cant = 0;
-        float cambio;
+        private CN_PRUDUCTOS obj_cnpro = new CN_PRUDUCTOS();
+       
         float pago;
         float monto;
 
@@ -151,6 +151,9 @@ namespace Proyecto_final
                     }
 
                     CalcularTotal();
+
+                    txtNombre.Clear();
+                    txtcbproducto.Clear();
                 }
 
                 e.Handled = true;
@@ -219,11 +222,7 @@ namespace Proyecto_final
             }
         }
 
-        private void icbagregarproducto_Click(object sender, EventArgs e)
-        {
-
-            txtcbproducto.Clear();
-        }
+     
 
         private void icbquitarproducto_Click(object sender, EventArgs e)
         {
@@ -255,24 +254,34 @@ namespace Proyecto_final
         {
             Document pdfDoc = new Document(new iTextSharp.text.Rectangle(612f, 792f), 10f, 10f, 20f, 10f);
 
-
             string directorio = @"C:\Users\erick\Desktop\tickets";
             if (!Directory.Exists(directorio))
             {
                 Directory.CreateDirectory(directorio);
             }
-            string rutaPDF = Path.Combine(directorio, "TicketDeCompra.pdf");
+
+            string uniqueFileName = $"TicketDeCompra_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.pdf";
+            string rutaPDF = Path.Combine(directorio, uniqueFileName);
 
             using (FileStream stream = new FileStream(rutaPDF, FileMode.Create))
             {
                 PdfWriter.GetInstance(pdfDoc, stream);
                 pdfDoc.Open();
 
-                pdfDoc.Add(new iTextSharp.text.Paragraph("Tienda UNA-FIT", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16)));
+                pdfDoc.Add(new iTextSharp.text.Paragraph("UNA-FIT", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16)));
                 pdfDoc.Add(new iTextSharp.text.Paragraph("Fecha: " + txtfecha1.Text));
+                pdfDoc.Add(new iTextSharp.text.Paragraph("Folio:" + txtfolio.Text));
                 pdfDoc.Add(new iTextSharp.text.Paragraph("================================"));
-                pdfDoc.Add(new iTextSharp.text.Paragraph("Cantidad\t\tNombre\t\tPrecio U.\t\tTotal"));
 
+                PdfPTable table = new PdfPTable(4);
+                table.WidthPercentage = 100;
+                float[] widths = new float[] { 1.5f, 4f, 2f, 2f };
+                table.SetWidths(widths);
+
+                table.AddCell(new PdfPCell(new iTextSharp.text.Phrase("Cantidad")) { HorizontalAlignment = Element.ALIGN_CENTER });
+                table.AddCell(new PdfPCell(new iTextSharp.text.Phrase("Nombre")) { HorizontalAlignment = Element.ALIGN_CENTER });
+                table.AddCell(new PdfPCell(new iTextSharp.text.Phrase("Precio U.")) { HorizontalAlignment = Element.ALIGN_CENTER });
+                table.AddCell(new PdfPCell(new iTextSharp.text.Phrase("Total")) { HorizontalAlignment = Element.ALIGN_CENTER });
 
                 foreach (DataGridViewRow row in dgvprod.Rows)
                 {
@@ -280,27 +289,41 @@ namespace Proyecto_final
                         row.Cells["PrecioU"].Value != null && row.Cells["PrecioTotal"].Value != null)
                     {
                         string nombre = row.Cells["Nombre"].Value.ToString();
-                        string cantidad = row.Cells["Cantidad"].Value.ToString();
+
+                        int cantidad;
+                        if (!int.TryParse(row.Cells["Cantidad"].Value.ToString(), out cantidad))
+                        {
+                            MessageBox.Show($"La cantidad para el producto '{nombre}' no es válida.", "Error de formato");
+                            return;
+                        }
+
                         string precioU = row.Cells["PrecioU"].Value.ToString();
                         string precioTotal = row.Cells["PrecioTotal"].Value.ToString();
 
-                        pdfDoc.Add(new iTextSharp.text.Paragraph($"{cantidad}\t{nombre}\t{precioU}\t{precioTotal}"));
+                        table.AddCell(new PdfPCell(new iTextSharp.text.Phrase(cantidad.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                        table.AddCell(new PdfPCell(new iTextSharp.text.Phrase(nombre)) { HorizontalAlignment = Element.ALIGN_LEFT });
+                        table.AddCell(new PdfPCell(new iTextSharp.text.Phrase(precioU)) { HorizontalAlignment = Element.ALIGN_RIGHT });
+                        table.AddCell(new PdfPCell(new iTextSharp.text.Phrase(precioTotal)) { HorizontalAlignment = Element.ALIGN_RIGHT });
+
+                        obj_cnpro.YTS(nombre, cantidad);
                     }
-
-                    pdfDoc.Add(new iTextSharp.text.Paragraph("================================"));
-                    pdfDoc.Add(new iTextSharp.text.Paragraph($"Total: {txtmtotal.Text}"));
-                    pdfDoc.Add(new iTextSharp.text.Paragraph($"Pago: {txtpago.Text}")); ;
-                    pdfDoc.Add(new iTextSharp.text.Paragraph($"Cambio: {txtcambio.Text}"));
-
-
-
-                    pdfDoc.Close();
                 }
 
-                MessageBox.Show($"El ticket de compra ha sido guardado en: {rutaPDF}", "Ticket de Compra");
+                pdfDoc.Add(table);
+
+                pdfDoc.Add(new iTextSharp.text.Paragraph("================================"));
+                pdfDoc.Add(new iTextSharp.text.Paragraph($"Total: {txtmtotal.Text}"));
+                pdfDoc.Add(new iTextSharp.text.Paragraph($"Pago: {txtpago.Text}"));
+                pdfDoc.Add(new iTextSharp.text.Paragraph($"Cambio: {txtcambio.Text}"));
+                pdfDoc.Add(new iTextSharp.text.Paragraph(" "));
+
+                pdfDoc.Close();
             }
 
-
+            System.Diagnostics.Process.Start(rutaPDF);
         }
+
+
+
     }
 }

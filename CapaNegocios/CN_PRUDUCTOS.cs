@@ -37,6 +37,9 @@ namespace CapaNegocios
             objcd_productos.L(id, nombre, cantidad, precio, fechacad);
         }
 
-
+        public void YTS(string nombre, int cantidad)
+        {
+            objcd_productos.UCP(nombre, cantidad);
+        }
     }
 }

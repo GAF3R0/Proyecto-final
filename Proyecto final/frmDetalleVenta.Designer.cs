@@ -49,8 +49,8 @@ namespace Proyecto_final
             this.ibtncobra = new FontAwesome.Sharp.IconButton();
             this.btnselecionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.CodigoB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioU = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvprod)).BeginInit();
@@ -63,8 +63,8 @@ namespace Proyecto_final
             this.dgvprod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnselecionar,
             this.CodigoB,
-            this.Cantidad,
             this.Nombre,
+            this.Cantidad,
             this.PrecioU,
             this.PrecioTotal});
             this.dgvprod.Location = new System.Drawing.Point(89, 161);
@@ -82,7 +82,6 @@ namespace Proyecto_final
             this.txtpago.Name = "txtpago";
             this.txtpago.Size = new System.Drawing.Size(79, 22);
             this.txtpago.TabIndex = 173;
-          
             // 
             // txtcambio
             // 
@@ -102,7 +101,6 @@ namespace Proyecto_final
             this.txtmtotal.Name = "txtmtotal";
             this.txtmtotal.Size = new System.Drawing.Size(85, 22);
             this.txtmtotal.TabIndex = 171;
-           
             // 
             // lbcambio
             // 
@@ -202,7 +200,7 @@ namespace Proyecto_final
             this.icbquitarproducto.IconColor = System.Drawing.Color.DarkRed;
             this.icbquitarproducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icbquitarproducto.IconSize = 30;
-            this.icbquitarproducto.Location = new System.Drawing.Point(837, 105);
+            this.icbquitarproducto.Location = new System.Drawing.Point(810, 170);
             this.icbquitarproducto.Name = "icbquitarproducto";
             this.icbquitarproducto.Size = new System.Drawing.Size(41, 44);
             this.icbquitarproducto.TabIndex = 176;
@@ -217,6 +215,7 @@ namespace Proyecto_final
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(151, 22);
             this.txtNombre.TabIndex = 178;
+            this.txtNombre.Visible = false;
             // 
             // label1
             // 
@@ -229,6 +228,7 @@ namespace Proyecto_final
             this.label1.Size = new System.Drawing.Size(76, 20);
             this.label1.TabIndex = 177;
             this.label1.Text = "Producto";
+            this.label1.Visible = false;
             // 
             // txtfolio
             // 
@@ -279,6 +279,13 @@ namespace Proyecto_final
             this.CodigoB.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.CodigoB.Width = 125;
             // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.Width = 125;
+            // 
             // Cantidad
             // 
             this.Cantidad.HeaderText = "Cantidad";
@@ -287,13 +294,6 @@ namespace Proyecto_final
             this.Cantidad.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Cantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Cantidad.Width = 125;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.Width = 125;
             // 
             // PrecioU
             // 
@@ -368,8 +368,8 @@ namespace Proyecto_final
         private FontAwesome.Sharp.IconButton ibtncobra;
         private System.Windows.Forms.DataGridViewButtonColumn btnselecionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoB;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioU;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioTotal;
     }
