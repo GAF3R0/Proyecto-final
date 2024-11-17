@@ -261,6 +261,12 @@
     <Compile Include="frmentrenadores.Designer.cs">
       <DependentUpon>frmentrenadores.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmescaneaqr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmescaneaqr.Designer.cs">
+      <DependentUpon>frmescaneaqr.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMienbros.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -316,12 +322,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="PuntodeVenta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PuntodeVenta.Designer.cs">
-      <DependentUpon>PuntodeVenta.cs</DependentUpon>
-    </Compile>
     <Compile Include="Utilidades\optioncombo.cs" />
     <EmbeddedResource Include="frmacercade.resx">
       <DependentUpon>frmacercade.cs</DependentUpon>
@@ -334,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmentrenadores.resx">
       <DependentUpon>frmentrenadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmescaneaqr.resx">
+      <DependentUpon>frmescaneaqr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMienbros.resx">
       <DependentUpon>frmMienbros.cs</DependentUpon>
@@ -363,9 +366,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PuntodeVenta.resx">
-      <DependentUpon>PuntodeVenta.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

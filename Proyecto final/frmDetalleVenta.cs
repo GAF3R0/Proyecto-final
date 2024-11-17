@@ -140,7 +140,8 @@ namespace Proyecto_final
                             break;
 
                         }
-                        txtNombre.Clear();
+                       
+
                         txtcbproducto.Clear();
                     }
 
@@ -152,7 +153,7 @@ namespace Proyecto_final
 
                     CalcularTotal();
 
-                    txtNombre.Clear();
+                  
                     txtcbproducto.Clear();
                 }
 

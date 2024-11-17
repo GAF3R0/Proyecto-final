@@ -193,5 +193,11 @@ namespace Proyecto_final
 
         }
 
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            frmescaneaqr formqr = new frmescaneaqr();
+
+            formqr.Show();
+        }
     }
 }

@@ -17,8 +17,8 @@ namespace CapaEntidades
         public String Cli_Domicilio { get; set; }
         public String Cli_Colonia { get; set; }
         public ESTATUS oestatus { get; set; }
-        public String Fecha_Creacion { get; set; }
-        public String Fecha_termina { get; set; }
+        public DateTime Fecha_Creacion { get; set; }
+        public DateTime Fecha_termina { get; set; }
 
     }
 }

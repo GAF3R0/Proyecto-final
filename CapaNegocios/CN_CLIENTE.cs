@@ -56,5 +56,12 @@ namespace CapaNegocios
         {
             objCD_CLIENTE.generaqr(id);  
         }
+
+        public CLIENTE OMPID(int id)
+        {
+           
+            return objCD_CLIENTE.ObtenerInformacionMiembro(id);
+        }
+
     }
 }

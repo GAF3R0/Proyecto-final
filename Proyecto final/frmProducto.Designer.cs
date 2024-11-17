@@ -192,11 +192,11 @@ namespace Proyecto_final
             this.Precio,
             this.FechaC,
             this.Fecharegistro});
-            this.dgvprod.Location = new System.Drawing.Point(242, 71);
+            this.dgvprod.Location = new System.Drawing.Point(250, 73);
             this.dgvprod.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvprod.Name = "dgvprod";
             this.dgvprod.RowHeadersWidth = 51;
-            this.dgvprod.Size = new System.Drawing.Size(669, 572);
+            this.dgvprod.Size = new System.Drawing.Size(661, 572);
             this.dgvprod.TabIndex = 97;
             this.dgvprod.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvprod_CellContentClick);
             this.dgvprod.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvprod_CellPainting);
@@ -267,7 +267,7 @@ namespace Proyecto_final
             this.ibtnexportarexcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
             this.ibtnexportarexcel.IconColor = System.Drawing.Color.White;
             this.ibtnexportarexcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnexportarexcel.Location = new System.Drawing.Point(56, 561);
+            this.ibtnexportarexcel.Location = new System.Drawing.Point(164, 459);
             this.ibtnexportarexcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ibtnexportarexcel.Name = "ibtnexportarexcel";
             this.ibtnexportarexcel.Size = new System.Drawing.Size(80, 82);
@@ -287,7 +287,7 @@ namespace Proyecto_final
             this.ibtneliminar.IconChar = FontAwesome.Sharp.IconChar.X;
             this.ibtneliminar.IconColor = System.Drawing.Color.White;
             this.ibtneliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtneliminar.Location = new System.Drawing.Point(108, 467);
+            this.ibtneliminar.Location = new System.Drawing.Point(84, 467);
             this.ibtneliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ibtneliminar.Name = "ibtneliminar";
             this.ibtneliminar.Size = new System.Drawing.Size(74, 67);
@@ -307,7 +307,7 @@ namespace Proyecto_final
             this.ibtnsave.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
             this.ibtnsave.IconColor = System.Drawing.Color.White;
             this.ibtnsave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnsave.Location = new System.Drawing.Point(15, 467);
+            this.ibtnsave.Location = new System.Drawing.Point(4, 467);
             this.ibtnsave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ibtnsave.Name = "ibtnsave";
             this.ibtnsave.Size = new System.Drawing.Size(74, 67);

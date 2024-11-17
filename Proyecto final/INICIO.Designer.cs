@@ -93,7 +93,7 @@ namespace Proyecto_final
             this.Contenedor.Location = new System.Drawing.Point(0, 73);
             this.Contenedor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Contenedor.Name = "Contenedor";
-            this.Contenedor.Size = new System.Drawing.Size(1231, 730);
+            this.Contenedor.Size = new System.Drawing.Size(1248, 730);
             this.Contenedor.TabIndex = 11;
             this.Contenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.Contenedor_Paint);
             // 

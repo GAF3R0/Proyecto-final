@@ -60,8 +60,9 @@ namespace CapaDatos
                                     est_id = Convert.ToInt32(dr["est_id"]),
                                     Est_descricion = dr["Est_descricion"].ToString()
                                 },
-                                Fecha_Creacion = dr["Fecha_Creacion"].ToString(),
-                                Fecha_termina = dr["Fecha_termina"].ToString()
+                                Fecha_Creacion = (DateTime)dr["Fecha_Creacion"],
+                                Fecha_termina = (DateTime)dr["Fecha_termina"]
+
                             });
                         }
                     }
@@ -259,8 +260,9 @@ namespace CapaDatos
                                     est_id = Convert.ToInt32(dr["est_id"]),
                                     Est_descricion = dr["Est_descricion"].ToString()
                                 },
-                                Fecha_Creacion = dr["Fecha_Creacion"].ToString(),
-                                Fecha_termina = dr["Fecha_termina"].ToString()
+                                Fecha_Creacion = (DateTime)dr["Fecha_Creacion"],
+                                Fecha_termina = (DateTime)dr["Fecha_termina"]
+
                             });
                         }
                     }
@@ -272,6 +274,65 @@ namespace CapaDatos
             }
             return listamiembros;
         }
+
+        public CLIENTE ObtenerInformacionMiembro(int idMiembro)
+        {
+            CLIENTE miembro = null;
+            using (MySqlConnection ocadena = new MySqlConnection(conectadobb))
+            {
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+                    query.AppendLine(" SELECT c.Cli_Id, c.Cli_Nombre, c.Cli_Telefono, c.Cli_Telefono_Emer,");
+                    query.AppendLine(" c.Fecha_Creacion, c.Fecha_termina");
+                    query.AppendLine(" FROM cliente c");
+                    query.AppendLine(" WHERE c.Cli_Id = @idMiembro");
+
+                    MySqlCommand cmd = new MySqlCommand(query.ToString(), ocadena);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@idMiembro", idMiembro);
+
+                    ocadena.Open();
+
+                    using (MySqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            // Parseamos los datos obtenidos
+                            DateTime fechaTermina = Convert.ToDateTime(dr["Fecha_termina"]);
+                            DateTime fechaActual = DateTime.Now;
+
+                            // Calculamos el estatus de la membresía
+                            string estatusMembresia = fechaTermina < fechaActual
+                                ? "Membresía inactiva"
+                                : "Membresía activa";
+
+                            miembro = new CLIENTE()
+                            {
+                                Cli_Id = Convert.ToInt32(dr["Cli_Id"]),
+                                Cli_Nombre = dr["Cli_Nombre"].ToString(),
+                                Cli_Telefono = dr["Cli_Telefono"].ToString(),
+                                Cli_Telefono_Emer = dr["Cli_Telefono_Emer"].ToString(),
+                                Fecha_Creacion = (DateTime)dr["Fecha_Creacion"],
+                                Fecha_termina = (DateTime)dr["Fecha_termina"],
+                                oestatus = new ESTATUS()
+                                {
+                                    Est_descricion = estatusMembresia
+                                }
+                            };
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al obtener la información del miembro: " + ex.Message, ex);
+                }
+            }
+            return miembro;
+        }
+
+
+
 
         public List<CLIENTE> Listar_visistas()
         {
@@ -316,8 +377,9 @@ namespace CapaDatos
                                     est_id = Convert.ToInt32(dr["est_id"]),
                                     Est_descricion = dr["Est_descricion"].ToString()
                                 },
-                                Fecha_Creacion = dr["Fecha_Creacion"].ToString(),
-                                Fecha_termina = dr["Fecha_termina"].ToString()
+                                Fecha_Creacion = (DateTime)dr["Fecha_Creacion"],
+                                Fecha_termina = (DateTime)dr["Fecha_termina"]
+
                             });
                         }
                     }
@@ -361,46 +423,22 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("SELECT c.Cli_Id, e.est_descricion, c.Cli_Nombre, c.Cli_Edad, c.Cli_Telefono,");
-                    query.AppendLine("c.Cli_Telefono_Emer, c.Cli_Correo, c.Cli_Domicilio, c.Cli_Colonia,");
-                    query.AppendLine("c.Est_id, c.Fecha_Creacion, c.Fecha_termina ");
+                    query.AppendLine("SELECT c.Cli_Id ");
                     query.AppendLine("FROM cliente c ");
-                    query.AppendLine("INNER JOIN Estatus e ON c.Est_id = e.Est_id ");
                     query.AppendLine("WHERE c.Cli_Id = @CliId");
 
                     MySqlCommand cmd = new MySqlCommand(query.ToString(), ocadena);
                     cmd.Parameters.AddWithValue("@CliId", id);
 
                     ocadena.Open();
+
                     using (MySqlDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
                         {
                             int clienteId = Convert.ToInt32(dr["Cli_Id"]);
-                            string descripcionEstado = dr["est_descricion"].ToString();
-                            string nombre = dr["Cli_Nombre"].ToString();
-                            int edad = Convert.ToInt32(dr["Cli_Edad"]);
-                            string telefono = dr["Cli_Telefono"].ToString();
-                            string telefonoEmergencia = dr["Cli_Telefono_Emer"].ToString();
-                            string correo = dr["Cli_Correo"].ToString();
-                            string domicilio = dr["Cli_Domicilio"].ToString();
-                            string colonia = dr["Cli_Colonia"].ToString();
-                            DateTime fechaCreacion = Convert.ToDateTime(dr["Fecha_Creacion"]);
-                            DateTime? fechaTermina = dr["Fecha_termina"] as DateTime?;
+                            string qrData = clienteId.ToString();
 
-                            // Verifica si la membresía está vigente o expirada
-                            DateTime fechaActual = DateTime.Now;
-                            string estadoMembresia = fechaTermina.HasValue && fechaTermina.Value.Date > fechaActual.Date
-                                ? "Membresía Vigente"
-                                : "Membresía Expirada";
-
-                            // Genera los datos del QR, incluyendo el estado de la membresía
-                            string qrData = $"ID: {clienteId}|Nombre: {nombre}|Edad: {edad}|Telefono: {telefono}|" +
-                                            $"Telefono Emergencia: {telefonoEmergencia}|Correo: {correo}|" +
-                                            $"Estado: {descripcionEstado}|Fecha Creacion: {fechaCreacion:yyyy-MM-dd}|" +
-                                            $"Fecha Termina: {(fechaTermina.HasValue ? fechaTermina.Value.ToString("yyyy-MM-dd") : "N/A")}|Estado Membresía: {estadoMembresia}";
-
-                            // Código para generar el QR
                             using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
                             {
                                 QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrData, QRCodeGenerator.ECCLevel.Q);
@@ -411,8 +449,9 @@ namespace CapaDatos
                                     SaveFileDialog saveFileDialog = new SaveFileDialog();
                                     saveFileDialog.Filter = "PNG Image|*.png";
                                     saveFileDialog.Title = "Guardar Código QR";
-                                    saveFileDialog.FileName = $"{nombre}_QRCode.png";
+                                    saveFileDialog.FileName = $"ID_{clienteId}_QRCode.png";
                                     saveFileDialog.InitialDirectory = @"C:\Users\SALINITAS\Pictures\QR Gym";
+
                                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                                     {
                                         qrCodeImage.Save(saveFileDialog.FileName);
@@ -429,13 +468,14 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error al listar los clientes: " + ex.Message + " | StackTrace: " + ex.StackTrace, ex);
+                    throw new Exception("Error al generar el código QR: " + ex.Message + " | StackTrace: " + ex.StackTrace, ex);
                 }
             }
         }
-
-
-
-
     }
 }
+
+
+
+
+

@@ -28,7 +28,7 @@ namespace Proyecto_final
         private void INICIO_Load(object sender, EventArgs e)
         {
             this.AutoScaleMode = AutoScaleMode.Dpi;
-            Con_botonee.BackColor = Color.SlateGray;
+            Con_botonee.BackColor = Color.FromArgb(28, 32, 40);
             List<PERMISO> Listaper = new CN_PERMISO().Listar(usuarioactual.Id_Usuario);
 
             foreach (IconButton iconButton in Con_botonee.Controls.OfType<IconButton>())
