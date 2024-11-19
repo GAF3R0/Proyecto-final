@@ -90,9 +90,85 @@ namespace Proyecto_final
 
         }
 
+        //esta cosa sirve para que el nombre solo sean LETRAS
+        private bool SoloLetras(string texto)
+        {
+            return texto.All(c => char.IsLetter(c) || char.IsWhiteSpace(c));
+        }
+
+        //esta otra cosa es para que los numeros de telefono sean solo NUMEROS
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+
 
         private void ibtnsave_Click(object sender, EventArgs e)
         {
+
+            //validaciones de los datos del cliente
+
+            if (string.IsNullOrWhiteSpace(txtNombreCliente.Text) || !SoloLetras(txtNombreCliente.Text))
+            {
+                MessageBox.Show("Por favor, ingrese un nombre válido (solo letras y espacios).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombreCliente.Focus();
+                return;
+            }
+
+            if (!int.TryParse(txtEdad.Text, out int edad) || edad <= 14)
+            {
+                MessageBox.Show("Por favor, ingrese una edad válida (mayor o igual a 15).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEdad.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtTelefono.Text) || !txtTelefono.Text.All(char.IsDigit) || txtTelefono.Text.Length < 10)
+            {
+                MessageBox.Show("Por favor, ingrese un número de telefono válido (tener al menos 10 dígitos).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTelefono.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtTelefonoEmergencia.Text) || !txtTelefonoEmergencia.Text.All(char.IsDigit) || txtTelefonoEmergencia.Text.Length < 10)
+            {
+                MessageBox.Show("Por favor, ingrese un número de telefono de emergencia válido (tener al menos 10 dígitos).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTelefonoEmergencia.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtCorreo.Text) || !txtCorreo.Text.Contains("@"))
+            {
+                MessageBox.Show("Por favor, ingrese un correo electrónico válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCorreo.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtdomicilio.Text))
+            {
+                MessageBox.Show("Por favor, ingrese el domicilio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtdomicilio.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtCiudad.Text))
+            {
+                MessageBox.Show("Por favor, ingrese una cololina.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCiudad.Focus();
+                return;
+            }
+
+            if (cboestatus.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione un estatus.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cboestatus.Focus();
+                return;
+            }
+
+
             CLIENTE objcliente = new CLIENTE()
             {
                 Cli_Nombre = txtNombreCliente.Text,
@@ -108,7 +184,6 @@ namespace Proyecto_final
 
 
             string nombre = txtNombreCliente.Text;
-            int edad = Convert.ToInt32(txtEdad.Text);
             string telefono = txtTelefono.Text;
             string telefono911 = txtTelefonoEmergencia.Text;
             string correo = txtCorreo.Text;

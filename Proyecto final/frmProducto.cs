@@ -61,32 +61,59 @@ namespace Proyecto_final
 
         }
 
+        //lo de las letras
+        private bool SoloLetras(string texto)
+        {
+            return texto.All(c => char.IsLetter(c) || char.IsWhiteSpace(c));
+        }
+
         private void ibtnsave_Click(object sender, EventArgs e)
         {
-            long prodId;
-            if (!long.TryParse(txtCodigoBarras.Text, out prodId))
-            {
-               return;
-            }
 
-            string prodNombre = txtNombre.Text;
+            //validaciones del producto
 
-            int prodCantidad;
-            if (!int.TryParse(txtCantidad.Text, out prodCantidad))
+            if (!long.TryParse(txtCodigoBarras.Text, out long prodId) || txtCodigoBarras.Text.Length < 1)
             {
+                MessageBox.Show("El código de barras debe ser un número válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCodigoBarras.Focus();
                 return;
             }
 
-            decimal prodPrecio;
-            if (!decimal.TryParse(txtPrecio.Text, out prodPrecio))
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || !SoloLetras(txtNombre.Text))
             {
+                MessageBox.Show("Por favor, ingrese un nombre válido (solo letras y espacios).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
                 return;
             }
+
+            if (!int.TryParse(txtCantidad.Text, out int prodCantidad) || prodCantidad <= 0)
+            {
+                MessageBox.Show("La cantidad debe ser un número positivo mayor a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCantidad.Focus();
+                return;
+            }
+
+            // Validar Precio
+            if (!decimal.TryParse(txtPrecio.Text, out decimal prodPrecio) || prodPrecio <= 0)
+            {
+                MessageBox.Show("Por favor, ingrese el precio del producto.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPrecio.Focus();
+                return;
+            }
+
+            // Validar Fecha de Caducidad
+            if (!DateTime.TryParse(txtCaducidad.Text, out DateTime fechaCaducidad) || fechaCaducidad <= DateTime.Now)
+            {
+                MessageBox.Show("La fecha de caducidad debe ser una fecha válida y posterior a hoy.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCaducidad.Focus();
+                return;
+            }
+
 
             PRODUCTO objproducto = new PRODUCTO()
             {
                 Prod_Id = prodId,
-                Prod_Nombre = prodNombre,
+                Prod_Nombre = txtNombre.Text,
                 Prod_Cantidad = prodCantidad,
                 Prod_Precio = prodPrecio,
                 Prod_FechaCad = txtCaducidad.Text 

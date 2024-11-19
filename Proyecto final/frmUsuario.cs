@@ -104,8 +104,70 @@ namespace Proyecto_final
 
         }
 
+        //esta cosa sirve para que el nombre solo sean LETRAS
+        private bool SoloLetras(string texto)
+        {
+            return texto.All(c => char.IsLetter(c) || char.IsWhiteSpace(c));
+        }
+
+        //esta cosa es la cosa para lo del telefono
+        private void txtphone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; 
+            }
+        }
+
+
         private void ibtnsave_Click(object sender, EventArgs e)
         {
+
+            //validaciones de los datos del usuario
+
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || !SoloLetras(txtNombre.Text))
+            {
+                MessageBox.Show("Por favor, ingrese un nombre válido (solo letras y espacios).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtphone.Text) || !txtphone.Text.All(char.IsDigit) || txtphone.Text.Length < 10)
+            {
+                MessageBox.Show("Por favor, ingrese un número de telefono válido (tener al menos 10 dígitos).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtphone.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtclave.Text))
+            {
+                MessageBox.Show("Por favor, ingrese una clave válida.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtclave.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtcorreo.Text) || !txtcorreo.Text.Contains("@"))
+            {
+                MessageBox.Show("Por favor, ingrese un correo electrónico válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtcorreo.Focus();
+                return;
+            }
+
+            if (cborol.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione un rol.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cborol.Focus();
+                return;
+            }
+
+            if (cboestado.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione un estado.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cboestado.Focus();
+                return;
+            }
+
+
             USUARIO objusuario = new USUARIO()
             {
                 //Id_Usuario = Convert.ToInt32(txtId.Text),
