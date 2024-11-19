@@ -9,6 +9,6 @@ namespace CapaDatos
 {
     public class ConexionBD
     {
-        public static string cadena = "Server=localhost; Port=3306; Database=Gym; UID=root; Pwd=Rocket2014;";
+        public static string cadena = "Server=localhost; Port=3306; Database=Gym; UID=root; Pwd=15222005;";
     }
 }
