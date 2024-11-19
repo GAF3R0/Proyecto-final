@@ -33,12 +33,6 @@ namespace Proyecto_final
             this.ibtnsave = new FontAwesome.Sharp.IconButton();
             this.ibtnexportarexcel = new FontAwesome.Sharp.IconButton();
             this.dgvmiembro = new System.Windows.Forms.DataGridView();
-            this.txtid = new System.Windows.Forms.TextBox();
-            this.txtnombre = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.icbgenerarqr = new FontAwesome.Sharp.IconButton();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.dgvbtnsleciona = new System.Windows.Forms.DataGridViewButtonColumn();
             this.estatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +44,11 @@ namespace Proyecto_final
             this.Ciudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaCreacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaTermina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtid = new System.Windows.Forms.TextBox();
+            this.txtnombre = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.icbgenerarqr = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvmiembro)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,81 +127,6 @@ namespace Proyecto_final
             this.dgvmiembro.TabIndex = 95;
             this.dgvmiembro.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvusuario_CellContentClick);
             this.dgvmiembro.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvmiembro_CellPainting);
-            // 
-            // txtid
-            // 
-            this.txtid.Location = new System.Drawing.Point(383, 677);
-            this.txtid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtid.Name = "txtid";
-            this.txtid.Size = new System.Drawing.Size(57, 22);
-            this.txtid.TabIndex = 101;
-            this.txtid.TextChanged += new System.EventHandler(this.txtid_TextChanged);
-            // 
-            // txtnombre
-            // 
-            this.txtnombre.Location = new System.Drawing.Point(725, 681);
-            this.txtnombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtnombre.Name = "txtnombre";
-            this.txtnombre.Size = new System.Drawing.Size(94, 22);
-            this.txtnombre.TabIndex = 102;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(243, 680);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 17);
-            this.label1.TabIndex = 103;
-            this.label1.Text = "ID de Miembro";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(547, 684);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 17);
-            this.label2.TabIndex = 104;
-            this.label2.Text = "Nombre de Miembro";
-            // 
-            // icbgenerarqr
-            // 
-            this.icbgenerarqr.FlatAppearance.BorderSize = 0;
-            this.icbgenerarqr.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(79)))), ((int)(((byte)(203)))));
-            this.icbgenerarqr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icbgenerarqr.ForeColor = System.Drawing.Color.White;
-            this.icbgenerarqr.IconChar = FontAwesome.Sharp.IconChar.Redo;
-            this.icbgenerarqr.IconColor = System.Drawing.Color.White;
-            this.icbgenerarqr.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.icbgenerarqr.Location = new System.Drawing.Point(806, 11);
-            this.icbgenerarqr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.icbgenerarqr.Name = "icbgenerarqr";
-            this.icbgenerarqr.Size = new System.Drawing.Size(122, 101);
-            this.icbgenerarqr.TabIndex = 105;
-            this.icbgenerarqr.Text = "Generar Codigo QR";
-            this.icbgenerarqr.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.icbgenerarqr.UseVisualStyleBackColor = true;
-            this.icbgenerarqr.Click += new System.EventHandler(this.icbgenerarqr_Click);
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(79)))), ((int)(((byte)(203)))));
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.ForeColor = System.Drawing.Color.White;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Qrcode;
-            this.iconButton1.IconColor = System.Drawing.Color.White;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(1013, 11);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(117, 114);
-            this.iconButton1.TabIndex = 106;
-            this.iconButton1.Text = "Escanear QR";
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // dgvbtnsleciona
             // 
@@ -300,6 +224,62 @@ namespace Proyecto_final
             this.FechaTermina.ReadOnly = true;
             this.FechaTermina.Width = 125;
             // 
+            // txtid
+            // 
+            this.txtid.Location = new System.Drawing.Point(383, 677);
+            this.txtid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtid.Name = "txtid";
+            this.txtid.Size = new System.Drawing.Size(57, 22);
+            this.txtid.TabIndex = 101;
+            
+            // 
+            // txtnombre
+            // 
+            this.txtnombre.Location = new System.Drawing.Point(725, 681);
+            this.txtnombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtnombre.Name = "txtnombre";
+            this.txtnombre.Size = new System.Drawing.Size(94, 22);
+            this.txtnombre.TabIndex = 102;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(243, 680);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 17);
+            this.label1.TabIndex = 103;
+            this.label1.Text = "ID de Miembro";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(547, 684);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(136, 17);
+            this.label2.TabIndex = 104;
+            this.label2.Text = "Nombre de Miembro";
+            // 
+            // icbgenerarqr
+            // 
+            this.icbgenerarqr.FlatAppearance.BorderSize = 0;
+            this.icbgenerarqr.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(79)))), ((int)(((byte)(203)))));
+            this.icbgenerarqr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icbgenerarqr.ForeColor = System.Drawing.Color.White;
+            this.icbgenerarqr.IconChar = FontAwesome.Sharp.IconChar.Redo;
+            this.icbgenerarqr.IconColor = System.Drawing.Color.White;
+            this.icbgenerarqr.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.icbgenerarqr.Location = new System.Drawing.Point(806, 11);
+            this.icbgenerarqr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.icbgenerarqr.Name = "icbgenerarqr";
+            this.icbgenerarqr.Size = new System.Drawing.Size(122, 101);
+            this.icbgenerarqr.TabIndex = 105;
+            this.icbgenerarqr.Text = "Generar Codigo QR";
+            this.icbgenerarqr.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.icbgenerarqr.UseVisualStyleBackColor = true;
+            this.icbgenerarqr.Click += new System.EventHandler(this.icbgenerarqr_Click);
+            // 
             // frmMienbros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -315,7 +295,6 @@ namespace Proyecto_final
             this.Controls.Add(this.ibtnexportarexcel);
             this.Controls.Add(this.ibtnsave);
             this.Controls.Add(this.lbtitulolistamiembros);
-            this.Controls.Add(this.iconButton1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmMienbros";
@@ -337,7 +316,6 @@ namespace Proyecto_final
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconButton icbgenerarqr;
-        private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.DataGridViewButtonColumn dgvbtnsleciona;
         private System.Windows.Forms.DataGridViewTextBoxColumn estatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id_Cliente;

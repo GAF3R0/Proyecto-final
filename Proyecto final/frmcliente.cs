@@ -34,11 +34,7 @@ namespace Proyecto_final
 
         private void frmcliente_Load(object sender, EventArgs e)
         {
-           /* cboestatus.Items.Add(new optioncombo() { Valor = 1, Texto = "MIEMBRO" });
-            cboestatus.Items.Add(new optioncombo() { Valor = 0, Texto = "VISITANTE" });
-            cboestatus.DisplayMember = "Texto";
-            cboestatus.ValueMember = "Valor";
-            cboestatus.SelectedIndex = 0;*/
+     
 
             List<ESTATUS> listatecomesesta = new CN_ESTATUS().Listar();
 
@@ -50,11 +46,11 @@ namespace Proyecto_final
             cboestatus.ValueMember = "Valor";
             cboestatus.SelectedIndex = 0;
 
-           
+
 
             List<CLIENTE> ptcliente = new CN_CLIENTE().Listar();
 
-            foreach(CLIENTE item in ptcliente)
+            foreach (CLIENTE item in ptcliente)
             {
                 dgvcliente.Rows.Add(new object[] { "", item.Cli_Id,item.Cli_Nombre, item.Cli_Edad, item.Cli_Telefono, item.Cli_Telefono_Emer,
                     item.Cli_Domicilio, item.Cli_Colonia,
@@ -62,7 +58,7 @@ namespace Proyecto_final
                     item.Fecha_Creacion, item.Fecha_termina });
             }
 
-      
+
 
         }
         private void CargarClientes()

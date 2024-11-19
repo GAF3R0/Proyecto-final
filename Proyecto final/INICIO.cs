@@ -52,7 +52,7 @@ namespace Proyecto_final
             Abrirformulariobtn(null, new frmDetalleVenta());
         }
 
-        private void Abrirformulariobtn(IconButton b, Form formulario)
+        public void Abrirformulariobtn(IconButton b, Form formulario)
         {
             if (a != null)
             {

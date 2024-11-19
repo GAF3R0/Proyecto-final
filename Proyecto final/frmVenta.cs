@@ -1,4 +1,6 @@
-﻿using ClosedXML.Excel;
+﻿using CapaEntidades;
+using CapaNegocios;
+using ClosedXML.Excel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,13 +20,27 @@ namespace Proyecto_final
             InitializeComponent();
         }
 
-        private void lbbuscar_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void frmVenta_Load(object sender, EventArgs e)
         {
+            /*
+             List<CLIENTE> ptcliente = new CN_CLIENTE().Listar();
+
+          foreach(CLIENTE item in ptcliente)
+          {
+              dgvcliente.Rows.Add(new object[] { "", item.Cli_Id,item.Cli_Nombre, item.Cli_Edad, item.Cli_Telefono, item.Cli_Telefono_Emer,
+                  item.Cli_Domicilio, item.Cli_Colonia,
+                  item.oestatus.est_id,item.oestatus.Est_descricion,
+                  item.Fecha_Creacion, item.Fecha_termina });
+          }
+             */
+            List<DETALLEVENTA> ptnventadeta = new CN_DETALLEVENTA().Listar();
+
+            foreach(DETALLEVENTA item in ptnventadeta)
+            {
+                dgvventa.Rows.Add(new object[] { item.folio,item.oproducto.Prod_Id,item.oproducto.Prod_Nombre,
+                    item.Precio_Produnitario,item.Cantidad,item.Precio_Prodxcant,item.TotalVenta,item.FechaRegistro});
+            }
 
         }
 
@@ -87,6 +103,9 @@ namespace Proyecto_final
 
         }
 
-
+        private void ibtnsalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -327,6 +327,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilidades\optioncombo.cs" />
+    <None Include="Resources\logo12" />
     <EmbeddedResource Include="frmacercade.resx">
       <DependentUpon>frmacercade.cs</DependentUpon>
     </EmbeddedResource>

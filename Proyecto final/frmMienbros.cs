@@ -118,10 +118,7 @@ namespace Proyecto_final
 
         }
 
-        private void txtid_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void ibtnexportarexcel_Click(object sender, EventArgs e)
         {
@@ -193,11 +190,6 @@ namespace Proyecto_final
 
         }
 
-        private void iconButton1_Click(object sender, EventArgs e)
-        {
-            frmescaneaqr formqr = new frmescaneaqr();
-
-            formqr.Show();
-        }
+       
     }
 }

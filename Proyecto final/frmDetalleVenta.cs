@@ -10,11 +10,9 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DocumentFormat.OpenXml.Wordprocessing;
 using Document = iTextSharp.text.Document;
 using System.IO;
-using Rectangle = System.Drawing.Rectangle;
-using PageSize = DocumentFormat.OpenXml.Wordprocessing.PageSize;
+
 
 namespace Proyecto_final
 {
@@ -22,6 +20,7 @@ namespace Proyecto_final
     {
         private const float V = 10f;
         private CN_PRUDUCTOS obj_cnpro = new CN_PRUDUCTOS();
+        private CN_DETALLEVENTA obj_venta = new CN_DETALLEVENTA();
        
         float pago;
         float monto;
@@ -120,7 +119,7 @@ namespace Proyecto_final
                 if (producto != null)
                 {
 
-                    txtNombre.Text = producto.Prod_Nombre;
+               
 
                     bool productoExistente = false;
 
@@ -197,6 +196,8 @@ namespace Proyecto_final
         {
 
             txtfecha1.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            txtfecha1.Enabled = false;
+
         }
 
         private void dgvprod_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -235,23 +236,7 @@ namespace Proyecto_final
             }
         }
 
-        private void txttpproducto_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbmontot_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txttpproducto_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void ibtncobra_Click(object sender, EventArgs e)
+        private void generaticket()
         {
             Document pdfDoc = new Document(new iTextSharp.text.Rectangle(612f, 792f), 10f, 10f, 20f, 10f);
 
@@ -268,6 +253,8 @@ namespace Proyecto_final
             {
                 PdfWriter.GetInstance(pdfDoc, stream);
                 pdfDoc.Open();
+
+
 
                 pdfDoc.Add(new iTextSharp.text.Paragraph("UNA-FIT", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16)));
                 pdfDoc.Add(new iTextSharp.text.Paragraph("Fecha: " + txtfecha1.Text));
@@ -324,7 +311,42 @@ namespace Proyecto_final
             System.Diagnostics.Process.Start(rutaPDF);
         }
 
+        private void ibtncobra_Click(object sender, EventArgs e)
+        {
+
+            if (txtfolio.Text == "")
+            {
+                MessageBox.Show("No se ha ingresaddo ningun folio");
+            }
+            else
+            {
+                generaticket();
+            }
+
+            long folio = long.Parse(txtfolio.Text);
+            long cb = long.Parse(txtcbproducto.Text);
 
 
+
+            obj_venta.InsertarDetalleVenta(folio, cb,);
+
+           
+
+        }
+
+        private void ibtnbusquedaventa_Click(object sender, EventArgs e)
+        {
+            frmVenta formventa = new frmVenta();
+
+            formventa.Show();
+
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            frmescaneaqr formqr = new frmescaneaqr();
+
+            formqr.Show();
+        }
     }
 }
