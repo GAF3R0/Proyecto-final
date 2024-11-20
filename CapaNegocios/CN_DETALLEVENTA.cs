@@ -18,9 +18,21 @@ namespace CapaNegocios
             return objcd_detaventa.Listar();
         }
 
-        public void InsertarDetalleVenta(long folio, long prodId, decimal precioUnitario, int cantidad, decimal precioTotal, decimal totalVenta)
-        {
-            objcd_detaventa.InsertarDetalleVenta(folio, prodId, precioUnitario, cantidad, precioTotal, totalVenta);
-        }
+        
+            public void InsertarDetallesVenta(long folio, List<DETALLEVENTA> detalles)
+            {
+                foreach (var detalle in detalles)
+                {
+                
+                 objcd_detaventa.InsertarDetalleVenta(
+                        folio,
+                        detalle.oproducto.Prod_Id,
+                        detalle.Cantidad,
+                        detalle.TotalVenta);
+                }
+            }
+
+        
+
     }
 }

@@ -313,7 +313,7 @@ namespace Proyecto_final
 
         private void ibtncobra_Click(object sender, EventArgs e)
         {
-
+            
             if (txtfolio.Text == "")
             {
                 MessageBox.Show("No se ha ingresaddo ningun folio");
@@ -321,18 +321,59 @@ namespace Proyecto_final
             else
             {
                 generaticket();
+                obtenerdatos();
+                dgvprod.Rows.Clear();
             }
 
-            long folio = long.Parse(txtfolio.Text);
-            long cb = long.Parse(txtcbproducto.Text);
+        }
+
+        public void obtenerdatos()
+        {
+            try
+            {
+          
+                long folio = long.Parse(txtfolio.Text);
+                decimal total = decimal.Parse(txtmtotal.Text);
+
+            
+                List<DETALLEVENTA> detalles = new List<DETALLEVENTA>();
+
+            
+                foreach (DataGridViewRow row in dgvprod.Rows)
+                {
+                    if (!row.IsNewRow) 
+                    {
+
+                        DETALLEVENTA detalle = new DETALLEVENTA
+                        {
+                            folio = folio,
+                            oproducto = new PRODUCTO
+                            {
+                                Prod_Id = long.Parse(row.Cells["CodigoB"].Value.ToString()),
+                                Prod_Nombre = row.Cells["Nombre"].Value.ToString()
+                            },
+                            Cantidad = int.Parse(row.Cells["Cantidad"].Value.ToString()),
+                            Precio_Produnitario = decimal.Parse(row.Cells["PrecioU"].Value.ToString()),
+                            Precio_Prodxcant = decimal.Parse(row.Cells["PrecioTotal"].Value.ToString()),
+                            TotalVenta = total
+                        };
+
+                        detalles.Add(detalle);
+                    }
+                }
 
 
+                obj_venta.InsertarDetallesVenta(folio, detalles);
 
-            obj_venta.InsertarDetalleVenta(folio, cb,);
-
-           
+                MessageBox.Show("Detalles de venta guardados correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar los detalles de venta: " + ex.Message);
+            }
 
         }
+
 
         private void ibtnbusquedaventa_Click(object sender, EventArgs e)
         {

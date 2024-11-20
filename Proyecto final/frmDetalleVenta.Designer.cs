@@ -188,10 +188,10 @@ namespace Proyecto_final
             // 
             // txtcbproducto
             // 
-            this.txtcbproducto.Location = new System.Drawing.Point(330, 116);
+            this.txtcbproducto.Location = new System.Drawing.Point(191, 116);
             this.txtcbproducto.Margin = new System.Windows.Forms.Padding(4);
             this.txtcbproducto.Name = "txtcbproducto";
-            this.txtcbproducto.Size = new System.Drawing.Size(151, 22);
+            this.txtcbproducto.Size = new System.Drawing.Size(155, 22);
             this.txtcbproducto.TabIndex = 165;
             this.txtcbproducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttpproducto_KeyPress);
             // 
@@ -209,7 +209,7 @@ namespace Proyecto_final
             this.lbtpproducto.AutoSize = true;
             this.lbtpproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbtpproducto.ForeColor = System.Drawing.Color.White;
-            this.lbtpproducto.Location = new System.Drawing.Point(334, 81);
+            this.lbtpproducto.Location = new System.Drawing.Point(196, 92);
             this.lbtpproducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbtpproducto.Name = "lbtpproducto";
             this.lbtpproducto.Size = new System.Drawing.Size(140, 20);
@@ -246,7 +246,7 @@ namespace Proyecto_final
             this.icbquitarproducto.IconColor = System.Drawing.Color.DarkRed;
             this.icbquitarproducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icbquitarproducto.IconSize = 30;
-            this.icbquitarproducto.Location = new System.Drawing.Point(160, 105);
+            this.icbquitarproducto.Location = new System.Drawing.Point(33, 105);
             this.icbquitarproducto.Name = "icbquitarproducto";
             this.icbquitarproducto.Size = new System.Drawing.Size(41, 44);
             this.icbquitarproducto.TabIndex = 176;
@@ -255,7 +255,7 @@ namespace Proyecto_final
             // 
             // txtfolio
             // 
-            this.txtfolio.Location = new System.Drawing.Point(222, 116);
+            this.txtfolio.Location = new System.Drawing.Point(111, 116);
             this.txtfolio.Margin = new System.Windows.Forms.Padding(4);
             this.txtfolio.Name = "txtfolio";
             this.txtfolio.Size = new System.Drawing.Size(72, 22);
@@ -266,7 +266,7 @@ namespace Proyecto_final
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(233, 81);
+            this.label3.Location = new System.Drawing.Point(123, 92);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 20);

@@ -27,9 +27,11 @@ namespace CapaDatos
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("SELECT d.folio, d.Prod_Id, p.Prod_Nombre,");
                     query.AppendLine("d.Precio_Produnitario, d.CantidadProd,");
-                    query.AppendLine("d.Precio_Prodxcant, d.TotalVenta,d.Fecha_Creacion");
+                    query.AppendLine("d.Precio_Prodxcant, d.TotalVenta, d.Fecha_Creacion");
                     query.AppendLine("FROM Detalle_Venta d");
                     query.AppendLine("INNER JOIN Productos p ON p.Prod_Id = d.Prod_Id");
+                    query.AppendLine("ORDER BY d.folio DESC");
+
 
                     MySqlCommand cmd = new MySqlCommand(query.ToString(), ocadena);
                     cmd.CommandType = CommandType.Text;
@@ -69,13 +71,14 @@ namespace CapaDatos
 
 
 
-        public void InsertarDetalleVenta(long folio, long prodId, decimal precioUnitario, int cantidad, decimal precioTotal, decimal totalVenta)
+        public void InsertarDetalleVenta(long folio, long prodId, int cantidad, decimal totalVenta)
         {
+            string queryObtenerPrecio = "SELECT Prod_Precio FROM Productos WHERE Prod_Id = @prodId";
             string insertQuery = @"
-        INSERT INTO Detalle_Venta
-        (folio, Prod_Id, Precio_Produnitario, CantidadProd, Precio_Prodxcant, TotalVenta, Fecha_Creacion) 
-        VALUES 
-        (@folio, @prodId, @precioUnitario, @cantidad, @precioTotal, @totalVenta, NOW())";
+    INSERT INTO Detalle_Venta
+    (folio, Prod_Id, Precio_Produnitario, CantidadProd, Precio_Prodxcant, TotalVenta, Fecha_Creacion) 
+    VALUES 
+    (@folio, @prodId, @precioUnitario, @cantidad, @precioTotal, @totalVenta, NOW())";
 
             using (MySqlConnection connection = new MySqlConnection(conectadobb))
             {
@@ -83,9 +86,25 @@ namespace CapaDatos
                 {
                     connection.Open();
 
+                    // Obtener el precio unitario del producto
+                    decimal precioUnitario;
+                    using (MySqlCommand command = new MySqlCommand(queryObtenerPrecio, connection))
+                    {
+                        command.Parameters.AddWithValue("@prodId", prodId);
+                        var result = command.ExecuteScalar();
+                        if (result == null)
+                        {
+                            throw new Exception($"No se encontró un producto con ID {prodId}");
+                        }
+                        precioUnitario = Convert.ToDecimal(result);
+                    }
+
+                    // Calcular el precio total por cantidad
+                    decimal precioTotal = precioUnitario * cantidad;
+
+                    // Insertar en la tabla Detalle_Venta
                     using (MySqlCommand command = new MySqlCommand(insertQuery, connection))
                     {
-                        // Asignar parámetros
                         command.Parameters.AddWithValue("@folio", folio);
                         command.Parameters.AddWithValue("@prodId", prodId);
                         command.Parameters.AddWithValue("@precioUnitario", precioUnitario);
@@ -93,7 +112,6 @@ namespace CapaDatos
                         command.Parameters.AddWithValue("@precioTotal", precioTotal);
                         command.Parameters.AddWithValue("@totalVenta", totalVenta);
 
-                        // Ejecutar consulta
                         command.ExecuteNonQuery();
                     }
                 }
@@ -111,6 +129,9 @@ namespace CapaDatos
             }
         }
 
-
     }
+
+
+
 }
+

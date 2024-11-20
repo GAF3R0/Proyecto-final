@@ -30,8 +30,6 @@ namespace Proyecto_final
         private void InitializeComponent()
         {
             this.dgvventa = new System.Windows.Forms.DataGridView();
-            this.ibtnexportarexcel = new FontAwesome.Sharp.IconButton();
-            this.lbtituloventa = new System.Windows.Forms.Label();
             this.Folio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prod_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prod_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,12 +38,15 @@ namespace Proyecto_final
             this.Precio_Prodxcant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_Creacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ibtnexportarexcel = new FontAwesome.Sharp.IconButton();
+            this.lbtituloventa = new System.Windows.Forms.Label();
             this.ibtnsalir = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvventa)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvventa
             // 
+            this.dgvventa.AllowUserToAddRows = false;
             this.dgvventa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvventa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Folio,
@@ -62,35 +63,6 @@ namespace Proyecto_final
             this.dgvventa.RowHeadersWidth = 51;
             this.dgvventa.Size = new System.Drawing.Size(1126, 545);
             this.dgvventa.TabIndex = 98;
-            // 
-            // ibtnexportarexcel
-            // 
-            this.ibtnexportarexcel.FlatAppearance.BorderSize = 0;
-            this.ibtnexportarexcel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(79)))), ((int)(((byte)(204)))));
-            this.ibtnexportarexcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnexportarexcel.ForeColor = System.Drawing.Color.White;
-            this.ibtnexportarexcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
-            this.ibtnexportarexcel.IconColor = System.Drawing.Color.White;
-            this.ibtnexportarexcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnexportarexcel.Location = new System.Drawing.Point(970, 9);
-            this.ibtnexportarexcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ibtnexportarexcel.Name = "ibtnexportarexcel";
-            this.ibtnexportarexcel.Size = new System.Drawing.Size(157, 89);
-            this.ibtnexportarexcel.TabIndex = 131;
-            this.ibtnexportarexcel.Text = "Exportar a excel";
-            this.ibtnexportarexcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.ibtnexportarexcel.UseVisualStyleBackColor = true;
-            this.ibtnexportarexcel.Click += new System.EventHandler(this.ibtnexportarexcel_Click);
-            // 
-            // lbtituloventa
-            // 
-            this.lbtituloventa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtituloventa.ForeColor = System.Drawing.Color.White;
-            this.lbtituloventa.Location = new System.Drawing.Point(12, 9);
-            this.lbtituloventa.Name = "lbtituloventa";
-            this.lbtituloventa.Size = new System.Drawing.Size(651, 56);
-            this.lbtituloventa.TabIndex = 132;
-            this.lbtituloventa.Text = "LISTA DE VENTAS:";
             // 
             // Folio
             // 
@@ -150,6 +122,35 @@ namespace Proyecto_final
             this.fecha_Creacion.Name = "fecha_Creacion";
             this.fecha_Creacion.Width = 200;
             // 
+            // ibtnexportarexcel
+            // 
+            this.ibtnexportarexcel.FlatAppearance.BorderSize = 0;
+            this.ibtnexportarexcel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(79)))), ((int)(((byte)(204)))));
+            this.ibtnexportarexcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnexportarexcel.ForeColor = System.Drawing.Color.White;
+            this.ibtnexportarexcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
+            this.ibtnexportarexcel.IconColor = System.Drawing.Color.White;
+            this.ibtnexportarexcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnexportarexcel.Location = new System.Drawing.Point(970, 9);
+            this.ibtnexportarexcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ibtnexportarexcel.Name = "ibtnexportarexcel";
+            this.ibtnexportarexcel.Size = new System.Drawing.Size(157, 89);
+            this.ibtnexportarexcel.TabIndex = 131;
+            this.ibtnexportarexcel.Text = "Exportar a excel";
+            this.ibtnexportarexcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ibtnexportarexcel.UseVisualStyleBackColor = true;
+            this.ibtnexportarexcel.Click += new System.EventHandler(this.ibtnexportarexcel_Click);
+            // 
+            // lbtituloventa
+            // 
+            this.lbtituloventa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbtituloventa.ForeColor = System.Drawing.Color.White;
+            this.lbtituloventa.Location = new System.Drawing.Point(45, 9);
+            this.lbtituloventa.Name = "lbtituloventa";
+            this.lbtituloventa.Size = new System.Drawing.Size(651, 56);
+            this.lbtituloventa.TabIndex = 132;
+            this.lbtituloventa.Text = "LISTA DE VENTAS:";
+            // 
             // ibtnsalir
             // 
             this.ibtnsalir.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -160,13 +161,12 @@ namespace Proyecto_final
             this.ibtnsalir.IconChar = FontAwesome.Sharp.IconChar.ArrowAltCircleLeft;
             this.ibtnsalir.IconColor = System.Drawing.Color.White;
             this.ibtnsalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnsalir.IconSize = 50;
-            this.ibtnsalir.Location = new System.Drawing.Point(-1, 45);
+            this.ibtnsalir.IconSize = 30;
+            this.ibtnsalir.Location = new System.Drawing.Point(6, 2);
             this.ibtnsalir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ibtnsalir.Name = "ibtnsalir";
-            this.ibtnsalir.Size = new System.Drawing.Size(130, 66);
+            this.ibtnsalir.Size = new System.Drawing.Size(33, 44);
             this.ibtnsalir.TabIndex = 133;
-            this.ibtnsalir.Text = "Salir";
             this.ibtnsalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.ibtnsalir.UseVisualStyleBackColor = true;
             this.ibtnsalir.Click += new System.EventHandler(this.ibtnsalir_Click);
